@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+      	<meta charset="UTF-8">
+      	<link rel="stylesheet" href="/styles.css">
+	  	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/solid.css" integrity="sha384-uKQOWcYZKOuKmpYpvT0xCFAs/wE157X5Ua3H5onoRAOCNkJAMX/6QF0iXGGQV9cP" crossorigin="anonymous">
+	  	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/fontawesome.css" integrity="sha384-HU5rcgG/yUrsDGWsVACclYdzdCcn5yU8V/3V84zSrPDHwZEdjykadlgI6RHrxGrJ" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+		<title>Bikayi Assignment-Frontend Assignment</title>
+    </head>
+  
+    <body>
+    
+		<div id="banner">
+			<h1>The Nobel Prize Winners</h1><br>
+		</div>
+		
+		<div id="search-form">
+			<form onsubmit="return false">
+
+					<label for="startyear">Start Year:</label>
+				    <select id="startyear"></select>
+					<label for="endyear">End Year:</label>
+					<select id="endyear"></select>
+					<label for="categories">Categories:</label>
+					<select id ="categories" name="categories">
+						<option value="all">-</option>
+						<option value="physics">Physics</option>
+						<option value="chemistry">Chemistry</option>
+						<option value="medicine">Medicine</option>
+						<option value="peace">Peace</option>
+						<option value="economics">Economics</option></select>
+					<label for="countries">Country of Birth:</label>
+					
+					<select id ="countries" name="countries">
+						<option value="all">-</option>
+						<option value="DZ">Algeria</option>
+						<option value="AR">Argentina</option>
+						<option value="AU">Australia</option>
+						<option value="AT">Austria</option>
+						<option value="AZ">Azerbaijan</option>
+						<option value="BD">Bangladesh</option>
+						<option value="BY">Belarus</option>
+						<option value="BE">Belgium</option>
+						<option value="BA">Bosnia and Herzegovina</option>
+						<option value="BR">Brazil</option>
+						<option value="BG">Bulgaria</option>
+						<option value="CA">Canada</option>
+						<option value="CL">Chile</option>
+						<option value="CN">China</option>
+						<option value="CO">Colombia</option>
+						<option value="CR">Costa Rica</option>
+						<option value="HR">Croatia</option>
+						<option value="CY">Cyprus</option>
+						<option value="CZ">Czech Republic</option>
+						<option value="DK">Denmark</option>
+						<option value="TL">East Timor</option>
+						<option value="EG">Egypt</option>
+						<option value="FI">Finland</option>
+						<option value="FR">France</option>
+						<option value="DE">Germany</option>
+						<option value="GH">Ghana</option>
+						<option value="GR">Greece</option>
+						<option value="GP">Guadeloupe Island</option>
+						<option value="GT">Guatemala</option>
+						<option value="HU">Hungary</option>
+						<option value="IS">Iceland</option>
+						<option value="IN">India</option>
+						<option value="ID">Indonesia</option>
+						<option value="IR">Iran</option>
+						<option value="IE">Ireland</option>
+						<option value="IL">Israel</option>
+						<option value="IT">Italy</option>
+						<option value="JP">Japan</option>
+						<option value="KE">Kenya</option>
+						<option value="LV">Latvia</option>
+						<option value="LR">Liberia</option>
+						<option value="LT">Lithuania</option>
+						<option value="LU">Luxembourg</option>
+						<option value="MK">Macedonia</option>
+						<option value="MG">Madagascar</option>
+						<option value="MX">Mexico</option>
+						<option value="MA">Morocco</option>
+						<option value="MM">Myanmar</option>
+						<option value="NL">Netherlands</option>
+						<option value="NZ">New Zealand</option>
+						<option value="NG">Nigeria</option>
+						<option value="NO">Norway</option>
+						<option value="PK">Pakistan</option>
+						<option value="PE">Peru</option>
+						<option value="PL">Poland</option>
+						<option value="PT">Portugal</option>
+						<option value="RO">Romania</option>
+						<option value="RU">Russia</option>
+						<option value="LC">Saint Lucia</option>
+						<option value="SK">Slovakia</option>
+						<option value="SI">Slovenia</option>
+						<option value="ZA">South Africa</option>
+						<option value="KR">South Korea</option>
+						<option value="ES">Spain</option>
+						<option value="SE">Sweden</option>
+						<option value="CH">Switzerland</option>
+						<option value="TW">Taiwan</option>
+						<option value="TR">Turkey</option>
+						<option value="UA">Ukraine</option>
+						<option value="GB">United Kingdom</option>
+						<option value="US">USA</option>
+						<option value="VE">Venezuela</option>
+						<option value="VN">Vietnam</option>
+						<option value="YE">Yemen</option>
+						<option value="ZW">Zimbabwe</option></select>
+					<input type="submit" value="Submit" onclick="displayResults()">
+			</form>
+		</div>
+		
+		<div id="genderButtons">
+			<form>
+    			<fieldset>
+        			<legend id="filter">Filter by Gender</legend>
+					<div>
+						<input type="radio" id="all" value="all" name="gender" onclick="showAllGenders()" checked />
+						<label for="all">All</label>
+					</div>
+
+					<div>
+						<input type="radio" id="male" value="male" name="gender" onclick="showMalesOnly()"/>
+						<label for="male">Male</label>
+					</div>
+
+					<div>
+						<input type="radio" id="female" value="female" name="gender" onclick="showFemalesOnly()"/>
+						<label for="female">Female</label>
+					</div>
+					<div>
+						<input type="radio" id="org" value="org" name="gender" onclick="showOrganizationsOnly()"/>
+						<label for="org">Organizations</label>
+					</div>
+				</fieldset>
+			</form>
+		</div>
+		
+		<div id="laureatesResults"></div>
+		
+		<div id="info-modal" class="modal"><div id="modal-content"></div></div>
+		
+		<button onclick="topFunction()" id="top-button" title="Go to top"><i class="fas fa-chevron-up"></i></button>
+      
+        <footer id="foot"> 
+          <p>Kumar Sachin - MCA<br> <span> Vellore Institute Of Technology, Vellore</span></p>
+         
+        </footer>
+    
+    <script>
+    	var xmlhttp = new XMLHttpRequest();
+        var url = "data1.json";
+        
+        xmlhttp.onreadystatechange = function() {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+
+                parsedObj = JSON.parse(xmlhttp.responseText);
+            }
+        };
+
+        xmlhttp.open("GET", url, true);
+        xmlhttp.send();
+		
+		function dynamicSort(property) {
+			var sortOrder = 1;
+			if(property[0] === "-") {
+				sortOrder = -1;
+				property = property.substr(1);
+			}
+			return function (a,b) {
+				var result = (a[property] < b[property]) ? -1 : (a[property] > b[property]) ? 1 : 0;
+				return result * sortOrder;
+			}
+		} 
+		
+        
+        function getLaureatesData(obj, startYear, endYear, category, countryCode){
+			
+        	var laureatesArray = obj.laureates;
+			var startYearInt = parseInt(startYear);
+			var endYearInt = parseInt(endYear);
+			
+			matches = [];
+			
+			for(var i = 0; i < laureatesArray.length; i++){
+				for(var j = 0; j < laureatesArray[i].prizes.length; j++){
+					var prizeYearInt = parseInt(laureatesArray[i].prizes[j].year);
+					var prizeCategory = laureatesArray[i].prizes[j].category;
+					var laureateCountryCodeOfBirth = laureatesArray[i].bornCountryCode;
+					if (category == "all" && countryCode == 'all'){
+						if (prizeYearInt >= startYearInt && prizeYearInt <= endYearInt) {
+							
+							match = {};
+							match.id = laureatesArray[i].id;
+							match.gender = laureatesArray[i].gender;
+							match.firstname = laureatesArray[i].firstname;
+							match.surname = laureatesArray[i].surname;
+							match.prizeCategory = laureatesArray[i].prizes[j].category;
+							match.prizeYear = laureatesArray[i].prizes[j].year;
+							match.born = laureatesArray[i].born;
+							match.died = laureatesArray[i].died;
+							match.bornCity = laureatesArray[i].bornCity;
+							match.prizeMotivation = laureatesArray[i].prizes[j].motivation;
+							match.affiliations = laureatesArray[i].prizes[j].affiliations;
+							matches.push(match);
+						}
+					}
+					else if (category == "all"){
+						if (prizeYearInt >= startYearInt && prizeYearInt <= endYearInt && countryCode == laureateCountryCodeOfBirth) {
+							
+							match = {};
+							match.id = laureatesArray[i].id;
+							match.gender = laureatesArray[i].gender;
+							match.firstname = laureatesArray[i].firstname;
+							match.surname = laureatesArray[i].surname;
+							match.prizeCategory = laureatesArray[i].prizes[j].category;
+							match.prizeYear = laureatesArray[i].prizes[j].year;
+							match.born = laureatesArray[i].born;
+							match.died = laureatesArray[i].died;
+							match.bornCity = laureatesArray[i].bornCity;
+							match.prizeMotivation = laureatesArray[i].prizes[j].motivation;
+							match.affiliations = laureatesArray[i].prizes[j].affiliations;
+							matches.push(match);
+						}
+					}
+					else if (countryCode == "all"){
+						if (prizeYearInt >= startYearInt && prizeYearInt <= endYearInt && category == prizeCategory) {
+							
+							match = {};
+							match.id = laureatesArray[i].id;
+							match.gender = laureatesArray[i].gender;
+							match.firstname = laureatesArray[i].firstname;
+							match.surname = laureatesArray[i].surname;
+							match.prizeCategory = laureatesArray[i].prizes[j].category;
+							match.prizeYear = laureatesArray[i].prizes[j].year;
+							match.born = laureatesArray[i].born;
+							match.died = laureatesArray[i].died;
+							match.bornCity = laureatesArray[i].bornCity;
+							match.prizeMotivation = laureatesArray[i].prizes[j].motivation;
+							match.affiliations = laureatesArray[i].prizes[j].affiliations;
+							matches.push(match);
+						} 
+					}
+					else if (prizeYearInt >= startYearInt && prizeYearInt <= endYearInt && category == prizeCategory && countryCode == laureateCountryCodeOfBirth) {
+						
+						match = {};
+						match.id = laureatesArray[i].id;
+						match.gender = laureatesArray[i].gender;
+						match.firstname = laureatesArray[i].firstname;
+						match.surname = laureatesArray[i].surname;
+						match.prizeCategory = laureatesArray[i].prizes[j].category;
+						match.prizeYear = laureatesArray[i].prizes[j].year;
+						match.born = laureatesArray[i].born;
+						match.died = laureatesArray[i].died;
+						match.bornCity = laureatesArray[i].bornCity;
+						match.prizeMotivation = laureatesArray[i].prizes[j].motivation;
+						match.affiliations = laureatesArray[i].prizes[j].affiliations;
+						matches.push(match);
+					}
+				}
+			}
+			
+			matches.sort(dynamicSort("prizeYear"));
+									
+			var laureatesInfo = "<table id=\"laureatesTable\">";
+			laureatesInfo += "<tr><th>Name</th><th>Category</th><th>Year of Award</th><th>Additional Info</th></tr>";
+						
+			for(var i = 0; i < matches.length; i++){
+				laureatesInfo += "<tr class=\"" + matches[i].gender + "\">"
+				laureatesInfo += "<td>" + matches[i].firstname + " ";
+				if (matches[i].surname != null){
+					laureatesInfo += matches[i].surname + "</td>";
+				}
+				laureatesInfo += "<td>" + matches[i].prizeCategory + "</td>";
+				laureatesInfo += "<td>" + matches[i].prizeYear + "</td>";
+				laureatesInfo += "<td><button id=\"info_button\" onclick=\"additionalInfo(" + matches[i].id + ")\"><span class=\"fas fa-info-circle\"></span></button></td></tr>";
+			}
+    		
+
+    		laureatesInfo += "</table>"
+			
+    		document.getElementById("laureatesResults").innerHTML = laureatesInfo;
+			
+        }
+		
+		function displayResults(){
+			var startyear = document.getElementById("startyear").value;
+			var endyear = document.getElementById("endyear").value;
+			var prizeCategory = document.getElementById("categories").value;
+			var countryCodeOfBirth = document.getElementById("countries").value;
+			
+			if (startyear > endyear) {
+				laureatesInfo = "<h2 id=\"no-additional-info\">Start Year cannot exceed End Year. Please try again.</h2>"
+				document.getElementById("laureatesResults").innerHTML = laureatesInfo;
+			} else {
+				
+				getLaureatesData(parsedObj, startyear, endyear, prizeCategory, countryCodeOfBirth);
+
+				document.getElementById("genderButtons").style.display = "block";
+
+				document.getElementById("all").checked = true;
+				}
+		}
+		
+		function showMalesOnly(){
+			var maleList = document.getElementsByClassName("male");
+			var femaleList = document.getElementsByClassName("female");
+			var orgList = document.getElementsByClassName("org");
+						
+			for (var i = 0; i < maleList.length; i++){
+				maleList[i].style.display = "table-row";
+			}
+			
+			for (i = 0; i < femaleList.length; i++){
+				femaleList[i].style.display = "none";
+			}
+			
+			for (i = 0; i < orgList.length; i++){
+				orgList[i].style.display = "none";
+			}
+		}
+		
+		function showFemalesOnly(){
+			var maleList = document.getElementsByClassName("male");
+			var femaleList = document.getElementsByClassName("female");
+			var orgList = document.getElementsByClassName("org");
+						
+			for (var i = 0; i < maleList.length; i++){
+				maleList[i].style.display = "none";
+			}
+			
+			for (i = 0; i < femaleList.length; i++){
+				femaleList[i].style.display = "table-row";
+			}
+			
+			for (i = 0; i < orgList.length; i++){
+				orgList[i].style.display = "none";
+			}
+		}
+		
+		function showOrganizationsOnly(){
+		
+			var maleList = document.getElementsByClassName("male");
+			var femaleList = document.getElementsByClassName("female");
+			var orgList = document.getElementsByClassName("org");
+						
+			for (var i = 0; i < maleList.length; i++){
+				maleList[i].style.display = "none";
+			}
+			
+			for (i = 0; i < femaleList.length; i++){
+				femaleList[i].style.display = "none";
+			}
+			
+			for (i = 0; i < orgList.length; i++){
+				orgList[i].style.display = "table-row";
+			}
+		}
+		
+		function showAllGenders(){
+			
+			var maleList = document.getElementsByClassName("male");
+			var femaleList = document.getElementsByClassName("female");
+			var orgList = document.getElementsByClassName("org");
+						
+			for (var i = 0; i < maleList.length; i++){
+				maleList[i].style.display = "table-row";
+			}
+			
+			for (i = 0; i < femaleList.length; i++){
+				femaleList[i].style.display = "table-row";
+			}
+			
+			for (i = 0; i < orgList.length; i++){
+				orgList[i].style.display = "table-row";
+			}
+		}
+		
+		function additionalInfo(laureate_id){
+			
+			additionalLaureateInfo = {}
+			for (var i = 0; i < matches.length; i++){
+				if (matches[i].id == laureate_id){
+					additionalLaureateInfo = matches[i]
+				}
+			}
+			
+			var modal = document.getElementById('info-modal');
+			modal.style.display = "block";
+
+			window.onclick = function(event) {
+				if (event.target == modal) {
+					modal.style.display = "none";
+				}
+			}
+
+			var modalContent = "<span id=\"close\">&times;</span>";
+			
+			if ((additionalLaureateInfo.born == "0000-00-00" || additionalLaureateInfo.born == undefined) && 
+				(additionalLaureateInfo.died == "0000-00-00" || additionalLaureateInfo.died == undefined) && 
+				additionalLaureateInfo.bornCity == undefined && 
+				additionalLaureateInfo.prizeMotivation == undefined && 
+				additionalLaureateInfo.affiliations[0].length == 0){
+				modalContent += "<h2 id=\"no-additional-info\">No Additional Information Available</h2>"
+			} 
+			else {
+				if (additionalLaureateInfo.born != "0000-00-00"){
+					modalContent += "<p class=\"additional-info-heading\">Year of Birth</p>";
+					modalContent += "<p>" + additionalLaureateInfo.born.substring(0, 4) + "</p>";
+				}
+
+				if (additionalLaureateInfo.died != "0000-00-00"){
+					modalContent += "<p class=\"additional-info-heading\">Year of Death</p>";
+					modalContent += "<p>" + additionalLaureateInfo.died.substring(0, 4) + "</p>";
+				}
+
+				if (additionalLaureateInfo.bornCity){
+					modalContent += "<p class=\"additional-info-heading\">City of Birth</p>";
+					modalContent += "<p>" + additionalLaureateInfo.bornCity + "</p>";
+				}
+
+				if (additionalLaureateInfo.prizeMotivation){
+					modalContent += "<p class=\"additional-info-heading\">Motivation</p>";
+					modalContent += "<p>" + additionalLaureateInfo.prizeMotivation + "</p>";
+				}
+				
+				if (additionalLaureateInfo.affiliations[0].length != 0){
+					modalContent += "<p id=\"affiliations-heading\" class=\"additional-info-heading\">Affiliatons</p>";
+
+					for (i = 0; i < additionalLaureateInfo.affiliations.length; i++){
+						modalContent += "<p>" + additionalLaureateInfo.affiliations[i].name + " | " + additionalLaureateInfo.affiliations[i].city + " | " + additionalLaureateInfo.affiliations[i].country + "</p>";
+					}
+				}
+			}
+							
+			document.getElementById("modal-content").innerHTML = modalContent;
+
+			span = document.getElementById("close");
+
+			span.onclick = function() {
+				modal.style.display = "none";
+			}
+			document.addEventListener('keydown', function(e) {
+				var keyCode = e.keyCode;
+				if (keyCode === 27) {
+					modal.style.display = "none";
+				}
+			});
+		   
+		}
+		
+		function startYearDropdown(){
+			var html = "<option value=\"1901\" selected=\"selected\">1901</option>";
+			for (var i = 1902; i <= 2018; i++){
+				html += "<option value=\"" + i + "\">" + i + "</option>";
+			}
+			document.getElementById("startyear").innerHTML = html;
+		}
+		
+		function endYearDropdown(){
+			var html = "<option value=\"1901\">1901</option>";
+			for (var i = 1902; i < 2018; i++){
+				html += "<option value=\"" + i + "\">" + i + "</option>";
+			}
+			html += "<option value=\"2018\" selected=\"selected\">2018</option>";
+			document.getElementById("endyear").innerHTML = html;
+		} 
+		
+		window.onload = function() {
+			startYearDropdown();
+			endYearDropdown();
+		}
+		
+		window.onscroll = function() {scrollFunction()};
+
+		function scrollFunction() {
+			if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+				document.getElementById("top-button").style.display = "block";
+			} else {
+				document.getElementById("top-button").style.display = "none";
+			}
+		}
+
+		function topFunction() {
+			document.body.scrollTop = 0; 
+			document.documentElement.scrollTop = 0; 
+		}
+		
+		
+				
+    </script>
+      
+    </body>
+  
+</html>
